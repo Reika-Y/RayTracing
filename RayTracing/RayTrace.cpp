@@ -72,9 +72,32 @@ void RayTrace::RayTracing(const Position3f& eye, const Sphere& sp)
 			{
 				// 床との判定
 				auto plane = Plane{ Vector3f(0,1,0), -10 };
-				if (Dot(plane._normal, sight) <= 0)
+				if (Dot(plane._normal, sight) < 0)
 				{
-					DrawPixelWithFloat(x, y, 1, 1, 1);
+					auto t = (plane._offset - Dot(eye, plane._normal)) / Dot(sight, plane._normal);
+					auto hitPos = eye + sight * t;
+					if (static_cast<int>(hitPos.x + _screenSize.width * 10 )/2 % 2 == 0 )
+					{
+						if (static_cast<int>(hitPos.z + _screenSize.height * 10)/2 % 2 == 0)
+						{
+							DrawPixelWithFloat(x, y, 1, 1, 1);
+						}
+						else
+						{
+							DrawPixelWithFloat(x, y, 1, 0.07, 0.5);
+						}
+					}
+					else
+					{
+						if (static_cast<int>(hitPos.z + _screenSize.height * 4)/2 % 2 == 1)
+						{
+							DrawPixelWithFloat(x, y, 1, 1, 1);
+						}
+						else
+						{
+							DrawPixelWithFloat(x, y, 1, 0.07, 0.5);
+						}
+					}
 				}
 				else
 				{
