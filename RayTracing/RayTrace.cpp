@@ -55,14 +55,18 @@ void RayTrace::RayTracing(const Position3f& eye, const Sphere& sp)
 			Vector3f normal;
 			if (IsHitRayAndObject(eye, sight, sp, normal))
 			{
+				// 基本色
+				Color albedo = { 1.f,0.7f,0.7f };
 				// 拡散反射
-				auto diffuse = Clamp(Dot(light, normal));
+				auto diffuse = Dot(light, normal);
+				diffuse = (0 <= diffuse ? diffuse: 0);
+				albedo *= diffuse;
 				// 反射
 				auto reflect = 2.f * normal * diffuse - light;
 				// 反射光(スペキュラ)
-				auto specular = 1 * pow(Dot(reflect, sight), 20) * 1;
-				auto color = Clamp(diffuse + specular);
-				DrawPixelWithFloat(x, y, color, color, color);
+				float specular = 1 * pow(Dot(reflect, sight), 20) * 1;
+				Color color = { Clamp(albedo.x + specular),Clamp(albedo.y + specular) ,Clamp(albedo.z + specular)};
+				DrawPixelWithFloat(x, y, color.x, color.y, color.z);
 			}
 			else
 			{
