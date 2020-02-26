@@ -167,7 +167,7 @@ Vector3D<T> operator * (const T k, const Vector3D<T>& v)
 template<typename T>
 Vector3D<T> operator * (const Vector3D<T>& v, const T k)
 {
-	return Vector3D<T>(v.x * k, v.x * k, v.z * k);
+	return Vector3D<T>(v.x * k, v.y * k, v.z * k);
 }
 
 // Vector3D * Vector3D
