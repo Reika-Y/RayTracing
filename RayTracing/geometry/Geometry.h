@@ -5,3 +5,4 @@
 #include "Circle.h"
 #include "Rect.h"
 #include "Sphere.h"
+#include "Plane.h"

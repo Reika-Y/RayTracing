@@ -68,5 +68,8 @@
     <ClInclude Include="geometry\Sphere.h">
       <Filter>geometry</Filter>
     </ClInclude>
+    <ClInclude Include="geometry\Plane.h">
+      <Filter>geometry</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

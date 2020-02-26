@@ -70,7 +70,16 @@ void RayTrace::RayTracing(const Position3f& eye, const Sphere& sp)
 			}
 			else
 			{
-				DrawPixelWithFloat(x, y, 0.4, 0.9, 1);
+				// 床との判定
+				auto plane = Plane{ Vector3f(0,1,0), -10 };
+				if (Dot(plane._normal, sight) <= 0)
+				{
+					DrawPixelWithFloat(x, y, 1, 1, 1);
+				}
+				else
+				{
+					DrawPixelWithFloat(x, y, 0.4, 0.9, 1);
+				}
 			}
 		}
 	}

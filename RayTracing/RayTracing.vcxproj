@@ -140,6 +140,7 @@
     <ClInclude Include="geometry\details\Vector2D.h" />
     <ClInclude Include="geometry\details\Vector3D.h" />
     <ClInclude Include="geometry\Geometry.h" />
+    <ClInclude Include="geometry\Plane.h" />
     <ClInclude Include="geometry\Rect.h" />
     <ClInclude Include="geometry\Size.h" />
     <ClInclude Include="geometry\Sphere.h" />
